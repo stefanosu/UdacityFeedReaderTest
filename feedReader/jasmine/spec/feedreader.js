@@ -25,20 +25,16 @@ $(function() {
             expect(allFeeds).toBeDefined();
             expect(allFeeds.length).not.toBe(0);
         });
-        /* TODO: Write a test that loops through each feed
-         * in the allFeeds object and ensures it has a URL defined
-         * and that the URL is not empty.
-         */
+        /* A test to check if URL is defined and not empty 
+        by looping through the allFeeds object.*/
         it('url defined', function(){
             for (let feed of allFeeds) {
                 expect(allFeeds).toBeDefined();
                 expect(allFeeds.length).not.toBe(0);
             }
         });    
-         /* TODO: Write a test that loops through each feed
-         * in the allFeeds object and ensures it has a name defined
-         * and that the name is not empty.
-         */
+         /* A test to check that each name in the allFeeds 
+         object is defined and that the name is not empty.*/
          it('name defined', function(){
             for (let feed of allFeeds) {
                 expect(allFeeds).toBeDefined();
@@ -49,24 +45,18 @@ $(function() {
     });
 
 
-    /* TODO: Write a new test suite named "The menu" */
+    /* New test suite named "The menu" */
         describe('The menu', function(){
 
         
-        /* TODO: Write a test that ensures the menu element is
-         * hidden by default. You'll have to analyze the HTML and
-         * the CSS to determine how we're performing the
-         * hiding/showing of the menu element.
-         */
+        /* Wrote a test to check that the menu element is hidden by default.*/
          it('is hidden', function(){
             const body = document.querySelector('body');
             expect(body.classList.contains('menu-hidden')).toBe(true);
          });
-         /* TODO: Write a test that ensures the menu changes
-          * visibility when the menu icon is clicked. This test
-          * should have two expectations: does the menu display when
-          * clicked and does it hide when clicked again.
-          */
+         
+         /*Wrote a test to check that the menu changes visibility when the menu icon is clicked. 
+         And does the menu display when clicked and does it hide when clicked again. */
           it('if it toggles on and off', function(){
             const body = document.querySelector('body');
             const menu = document.querySelector('.menu-icon-link');
@@ -81,34 +71,28 @@ $(function() {
           });
      
    });       
-    /* TODO: Write a new test suite named "Initial Entries" */
+        /*Wrote a new test suite named "Initial Entries" */
         describe('Initial Entries', function(){
 
-        /* TODO: Write a test that ensures when the loadFeed
-         * function is called and completes its work, there is at least
-         * a single .entry element within the .feed container.
-         * Remember, loadFeed() is asynchronous so this test will require
-         * the use of Jasmine's beforeEach and asynchronous done() function.
-         */
+        /* A test to check when the loadFeed function is called and completes its work,
+        using an asynchronous function.*/
 
         beforeEach(function(){
           loadFeed(0, done);      
         }); 
 
         it('completes work', function(){
-            const feed = document.querySelector('.feed');
+            const feed = document.querySelector(".parent .child") --> ('.feed .entry');
             expect(feed.children.length > 0).toBe(true);
         });
 
      });
-    /* TODO: Write a new test suite named "New Feed Selection" */
+    /*  Wrote a new test suite named "New Feed Selection" */
         describe('New Feed Selection', function(){
             const feed = document.querySelector('.feed');
             const firstFeed = [];
-        /* TODO: Write a test that ensures when a new feed is loaded
-         * by the loadFeed function that the content actually changes.
-         * Remember, loadFeed() is asynchronous.
-         */
+        /* Wrote a test that checks when a new feed is loaded
+         by the loadFeed function that the content actually changes.*/
          beforeEach(function(){
             loadFeed(0);
             Array.from(feed.children).forEach(function(entry){
