@@ -29,16 +29,16 @@ $(function() {
         by looping through the allFeeds object.*/
         it('url defined', function(){
             for (let feed of allFeeds) {
-                expect(allFeeds).toBeDefined();
-                expect(allFeeds.length).not.toBe(0);
+                expect(feed.url).toBeDefined();
+                expect(feed.url.length).not.toBe(0);
             }
         });    
          /* A test to check that each name in the allFeeds 
          object is defined and that the name is not empty.*/
          it('name defined', function(){
             for (let feed of allFeeds) {
-                expect(allFeeds).toBeDefined();
-                expect(allFeeds.length).not.toBeDefined(0);                
+                expect(feed.name).toBe(0);
+                expect(feed.name.length).not.toBeDefined(0);                
             }
          });
         
@@ -65,7 +65,7 @@ $(function() {
             expect(body.classList.contains('menu-hidden')).toBe(false);
 
             menu.click();
-            expect(body.classList.contains('menu-hidden')).not.toBe(true);
+            expect(body.classList.contains('menu-hidden')).toBe(true);
 
 
           });
@@ -77,36 +77,33 @@ $(function() {
         /* A test to check when the loadFeed function is called and completes its work,
         using an asynchronous function.*/
 
-        beforeEach(function(){
+        beforeEach(function(done){
           loadFeed(0, done);      
         }); 
 
         it('completes work', function(){
-            const feed = document.querySelector(".parent .child") --> ('.feed .entry');
-            expect(feed.children.length > 0).toBe(true);
-        });
+            const feed = document.querySelector('.feed .entry');
+            expect(feed.children.length).toBeGreaterThan(0);    
+                });
 
      });
     /*  Wrote a new test suite named "New Feed Selection" */
         describe('New Feed Selection', function(){
-            const feed = document.querySelector('.feed');
-            const firstFeed = [];
-        /* Wrote a test that checks when a new feed is loaded
-         by the loadFeed function that the content actually changes.*/
-         beforeEach(function(){
-            loadFeed(0);
-            Array.from(feed.children).forEach(function(entry){
-                firstFeed.push(entry.innerText);
-            });
-            loadFeed(1, done);
-         });
+            var testfeed; 
+        // when a new feed is loaded by the loadFeed function that the content actually changes
 
-         it('content changes', function(){
-            Array.from(feed.children).forEach(function(entry, index){
-                console.log(entry.innerText, firstFeed[index], entry.innerText === firstFeed[index]);
-                expect(entry.innerText === firstFeed[index]).toBe(false);
+            beforeEach(function(done) {
+                loadFeed(0, function() {
+                    testfeed = $('.feed').html();
+                    loadFeed(1, done);
+                });
             });
-        
-});
+
+            // Check the newsfeed  html to be not same as previous.
+            it('has been loaded', function(){
+                expect($('.feed').html()).not.toEqual(testfeed);
+            });
+        });
+}());
 
     //Used Mathew Cranford Feed Reader Walkthrough for resource
