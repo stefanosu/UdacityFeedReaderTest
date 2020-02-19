@@ -5,8 +5,10 @@ In this project we are given a web-based application that reads RSS feeds by Uda
 How to run the Project:
 Clone the repository using git clone https://github.com/stefanosu/UdacityFeedReaderTest
 
-Open index.html in your browser.
-Technologies Used
+Open index.html in your browser: 
+
+Technologies Used: 
+
 Jasmine
 jQuery
 HTML5/CSS3
